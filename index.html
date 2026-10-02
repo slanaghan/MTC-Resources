@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Session Library | CSUDH Math Teachers’ Circle</title>
+  <meta name="description" content="Explore mathematics with the CSUDH Math Teachers’ Circle. Search sessions by topic, year, program, and presenter, and find materials for your next investigation.">
+  <meta name="theme-color" content="#791d34">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/styles.css">
+  <script type="module" src="assets/app.js"></script>
+</head>
+<body data-view="sessions">
+  <a class="skip-link" href="#main">Skip to sessions</a>
+  <header class="site-header"><div class="header-inner">
+    <a class="brand" href="index.html"><img src="assets/logo.png" alt="CSUDH Math Teachers’ Circle logo" width="76" height="90"><span><span class="brand-kicker">CALIFORNIA STATE UNIVERSITY, DOMINGUEZ HILLS</span><span class="brand-name">Math Teachers’ Circle</span></span></a>
+    <nav aria-label="Main navigation"><a href="index.html" aria-current="page">Sessions</a><a href="resources.html">Resources</a><a href="#about">About the circle</a></nav>
+  </div></header>
+  <main id="main" class="page-shell">
+    <section class="intro" aria-labelledby="page-title"><div><p class="eyebrow">THE SESSION LIBRARY</p><h1 id="page-title">Find your next mathematical exploration.</h1><p class="intro-copy">Ideas, investigations, and classroom connections from our circle.</p></div><div class="archive-summary"><strong id="total-count">—</strong><span>sessions to explore</span><span id="archive-years" class="muted">Loading the archive</span></div></section>
+    <form id="search-form" class="search-bar" role="search"><label class="sr-only" for="search">Search sessions</label><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 5 5"/></svg><input id="search" name="q" type="search" placeholder="Search titles, topics, descriptions, or presenters…" autocomplete="off"><button type="submit" class="button primary">Search</button></form>
+    <div class="catalog-layout">
+      <aside class="filters" aria-label="Filter sessions"><button id="filter-toggle" class="filter-toggle" aria-expanded="false" aria-controls="filter-content">Filter sessions <span aria-hidden="true">+</span></button><div id="filter-content" class="filter-content"><div class="filter-heading"><h2>Refine your search</h2><button class="text-button" id="reset-filters">Reset</button></div><fieldset class="focus-filter"><legend>Mathematical focus</legend><div id="focus-options"></div></fieldset><div class="filter-field"><label for="year">Year offered</label><select id="year"><option value="">All years</option></select></div><div class="filter-field"><label for="program">Program</label><select id="program"><option value="">All programs</option></select></div><div class="filter-field"><label for="presenter">Presenter</label><select id="presenter"><option value="">All presenters</option></select></div><p class="filter-note">Select more than one focus to include either topic.</p></div></aside>
+      <section class="results" aria-label="Session results"><div class="results-toolbar"><p id="result-count" role="status" aria-live="polite">Loading sessions…</p><div class="sort-field"><label for="sort">Sort by</label><select aria-label="Sort by" id="sort"><option value="recent">Most recent</option><option value="title">Title, A–Z</option><option value="oldest">Earliest offered</option></select></div></div><div id="active-filters" class="active-filters" aria-label="Active filters"></div><div id="results-grid" class="session-grid"><div class="loading">Opening the session library…</div></div><nav id="pagination" class="pagination" aria-label="Results pages"></nav></section>
+    </div>
+    <section id="about" class="about-circle"><div><p class="eyebrow">MATHEMATICS IS BETTER TOGETHER</p><h2>A circle for curious teachers.</h2></div><div><p>Since 2015, the CSUDH Math Teachers’ Circle has brought K–12 teachers and university faculty together to explore mathematics through collaborative problem solving.</p><p>With support from the California Mathematics Project, our summer institutes offer more time to investigate mathematical ideas and connect them to teaching and learning. This library brings those explorations and their materials together.</p></div></section>
+  </main>
+  <footer class="site-footer"><div><strong>CSUDH Math Teachers’ Circle</strong><span>Explore. Question. Connect.</span></div><div><a href="resources.html">Browse all resources</a><a href="update.html">Update the library</a></div></footer>
+  <dialog id="session-dialog" aria-labelledby="dialog-title"><button class="dialog-close" aria-label="Close session details">×</button><div id="session-detail"></div></dialog>
+  <noscript><p class="noscript">Please enable JavaScript to search this library. You can also <a href="downloads/MTC_Session_Database.xlsx">download the session spreadsheet</a>.</p></noscript>
+</body></html>

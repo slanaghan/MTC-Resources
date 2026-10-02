@@ -1,0 +1,14 @@
+{
+  "name": "csudh-mtc-session-library",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Static Math Teachers’ Circle session library for GitHub Pages",
+  "scripts": {
+    "dev": "vite",
+    "test": "node --test tests/core.test.mjs"
+  },
+  "devDependencies": {
+    "vite": "7.3.1"
+  }
+}
