@@ -4,11 +4,10 @@ A complete static website for GitHub Pages, with the supplied CSUDH MTC logo, 13
 
 ## What is included
 
-- Search session titles, descriptions, tags, presenters, and linked resource titles.
-- Combine mathematical-focus, year, program, and presenter filters. Multiple focus areas use OR; the other filters use AND. Year, program, and presenter must match the same offering.
+- Search session titles, descriptions, tags, and linked resource titles.
+- Combine mathematical-focus, year, and program filters. Multiple focus areas use OR; the other filters use AND. Year and program must match the same offering.
 - Sort by most recent, title, or earliest date. Results are paginated.
 - Open a session for all its documented dates, presenters, date notes, files, and each offering’s Google Drive folder.
-- Search the full resource archive by file name, folder, or linked session topic; filter by file type and archive year.
 - Share a search or session by copying its URL. Search state is retained in the query string.
 - Use the spreadsheet converter at `update.html` to generate a replacement `data/sessions.json` entirely in the browser.
 - Responsive layouts, keyboard navigation, labeled controls, a native accessible details dialog, and reduced-motion support.
@@ -24,6 +23,10 @@ A complete static website for GitHub Pages, with the supplied CSUDH MTC logo, 13
 No application build, database server, API key, or paid hosting service is required. The `.nojekyll` file tells Pages to serve the files as-is; if your upload method omits hidden files, create an empty `.nojekyll` file in the repository root. All website URLs are relative, so repository subpaths work.
 
 Official GitHub instructions: https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site
+
+## Replacing the previous website version
+
+Upload the files in this ZIP over your existing website files. Also delete the old `resources.html` from your GitHub repository; uploading replacement files does not remove files omitted from this ZIP. The presenter filter and all navigation to the Resources page have been removed.
 
 ## Your ongoing update process
 
@@ -58,7 +61,6 @@ To remove a session, remove its Sessions row and its associated Offerings rows. 
 | File or folder | Purpose |
 | --- | --- |
 | `index.html` | Searchable session library and session details. |
-| `resources.html` | Full resource inventory. |
 | `update.html` | Spreadsheet validation and JSON export. |
 | `assets/styles.css` | Site colors, typography, and responsive layout. |
 | `assets/app.js`, `assets/core.js` | Search, filtering, navigation, and session rendering. |
@@ -93,4 +95,4 @@ The logo and archive content retain their existing ownership. The included Sheet
 
 ## Verification notes
 
-Seven automated checks pass, including workbook round-trip preservation, edited dates, combined filters, and malformed input. Browser checks covered keyword search, co-presenter filtering, pagination, folder links, resource filters, spreadsheet validation, and a 390px-wide layout with no horizontal overflow. The automated browser could not capture the generated download; JSON generation and the download link were verified. The optional WebMCP search registration is feature-detected; this preview browser did not expose a supported registry, so agent-tool execution could not be validated.
+Seven automated checks pass, including workbook round-trip preservation, edited dates, combined filters, and malformed input. The original version was browser-checked for keyword search, pagination, folder links, spreadsheet validation, and a 390px-wide layout with no horizontal overflow. The October 2 revision removes the presenter search option and the Resources page; automated checks were rerun after the change. The spreadsheet reader keeps Excel dates as numeric date values so export does not shift them across time zones. The automated browser could not capture the generated download; JSON generation and the download link were verified. The optional WebMCP search registration is feature-detected; this preview browser did not expose a supported registry, so agent-tool execution could not be validated.

@@ -11,7 +11,7 @@ $('#convert').addEventListener('click',async()=>{
   if(!/\.xlsx$/i.test(f.name))throw Error('Select an .xlsx workbook. Save other spreadsheet formats as .xlsx first.');
   if(!window.XLSX)throw Error('The spreadsheet reader did not load. Reload the page and try again.');
   const [bytes,base]=await Promise.all([f.arrayBuffer(),basePromise]);
-  const wb=window.XLSX.read(bytes,{type:'array',cellDates:true});
+  const wb=window.XLSX.read(bytes,{type:'array',cellDates:false});
   const result=convertWorkbook(window.XLSX,wb,base);$('#validation').hidden=false;
   if(result.errors.length){$('#validation').innerHTML=`<div class="error-box" role="alert"><h3>A few things need attention</h3><p>Fix these items in the spreadsheet, save it, and select the updated file.</p><ul>${result.errors.slice(0,30).map(x=>`<li>${e(x)}</li>`).join('')}</ul>${result.errors.length>30?`<p>And ${result.errors.length-30} more issues.</p>`:''}</div>`;$('#update-status').textContent=`${result.errors.length} issue${result.errors.length===1?'':'s'} found. No data file was created.`;return}
   if(downloadURL)URL.revokeObjectURL(downloadURL);downloadURL=URL.createObjectURL(new Blob([JSON.stringify(result.data,null,2)+'\n'],{type:'application/json'}));

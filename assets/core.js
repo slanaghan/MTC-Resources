@@ -18,7 +18,7 @@ export function prepareDatabase(data){
  const rows=data.sessions.map(s=>{
   const offerings=data.offerings.filter(o=>o.session_id===s.session_id).sort((a,b)=>(b.start||'').localeCompare(a.start||''));
   const resources=data.resources.filter(r=>(r.session_ids||[]).includes(s.session_id));
-  const searchText=normalize([s.title,s.description,...(s.tags||[]),...(s.focus_areas||[]),...offerings.flatMap(o=>[o.presenter,o.program,o.start]),...resources.map(r=>r.title)].join(' '));
+  const searchText=normalize([s.title,s.description,...(s.tags||[]),...(s.focus_areas||[]),...offerings.flatMap(o=>[o.program,o.start]),...resources.map(r=>r.title)].join(' '));
   return {...s,offerings,resources,searchText,latest:offerings[0]?.start||'',earliest:offerings.at(-1)?.start||'',years:[...new Set(offerings.flatMap(offeringYears))]};
  });
  const resources=data.resources.map(r=>({...r,type:fileType(r.mime_type,r.title),year:r.archive_path?.match(/(?:19|20)\d{2}/)?.[0]||'',searchText:normalize([r.title,r.archive_path,...(r.session_ids||[]).flatMap(id=>{const s=bySession.get(id);return s?[s.title,...(s.tags||[]),...(s.focus_areas||[])]:[]})].join(' '))}));
@@ -26,6 +26,6 @@ export function prepareDatabase(data){
 }
 export function filterSessions(rows,state){
  const terms=normalize(state.q).split(/\s+/).filter(Boolean);
- return rows.filter(s=>terms.every(t=>s.searchText.includes(t))&&(!state.focus?.length||state.focus.some(f=>(s.focus_areas||[]).includes(f)))&&(!(state.year||state.program||state.presenter)||s.offerings.some(o=>(!state.year||offeringYears(o).includes(state.year))&&(!state.program||o.program===state.program)&&(!state.presenter||presenterNames(o.presenter).includes(state.presenter)))));
+ return rows.filter(s=>terms.every(t=>s.searchText.includes(t))&&(!state.focus?.length||state.focus.some(f=>(s.focus_areas||[]).includes(f)))&&(!(state.year||state.program)||s.offerings.some(o=>(!state.year||offeringYears(o).includes(state.year))&&(!state.program||o.program===state.program))));
 }
 export function sortSessions(rows,sort='recent'){return [...rows].sort((a,b)=>sort==='title'?a.title.localeCompare(b.title):sort==='oldest'?(a.earliest||'9999').localeCompare(b.earliest||'9999')||a.title.localeCompare(b.title):b.latest.localeCompare(a.latest)||a.title.localeCompare(b.title))}
